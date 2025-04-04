@@ -27,7 +27,7 @@ CREATE TABLE hunters(
 -- ハンター陣営とサバイバー陣営の勝ち負けの結果を登録するテーブル
 CREATE TABLE match_results(
     match_id serial PRIMARY KEY,
-    map_id INT REFERENCES maps(id),  -- 修正: 正しくマップを参照
+    map_id INT REFERENCES maps(id),  -- マップを参照
     hunter_id INT REFERENCES hunters(hunter_id),  -- ハンターを参照
     winner VARCHAR(50) CHECK (winner IN ('survivor', 'hunter')),  -- 勝者がサバイバーかハンターか
     match_date TIMESTAMP

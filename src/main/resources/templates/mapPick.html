@@ -3,14 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>マップバン</title>
+    <title>マップバン選択</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .team-box {
+            width: 45%;
+            background-color: #fff;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .team-header {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .team-name {
+            font-size: 2em;
+            color: #333;
+        }
+        .team-left {
+            text-align: left;
+        }
+        .team-right {
+            text-align: right;
+        }
+    </style>
 </head>
 <body>
-    <h1>マップバン画面</h1>
-    <p>ここでは、対戦するマップを選択します。</p>
-    <!-- 必要に応じてマップの一覧を表示し、選択できるようにします -->
-    <form action="/some-action" method="post">
-        <!-- マップ選択用の入力フォーム -->
-    </form>
+    <div class="container">
+        <!-- 左側チーム -->
+        <div class="team-box team-left">
+            <div class="team-header">左側チーム</div>
+            <div class="team-name">${team.teamName1}</div>  
+        </div>
+
+        <!-- 右側チーム -->
+        <div class="team-box team-right">
+            <div class="team-header">右側チーム</div>
+            <div class="team-name">${team.teamName2}</div>
+        </div>
+    </div>
 </body>
 </html>
