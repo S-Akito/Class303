@@ -40,21 +40,70 @@
         .team-right {
             text-align: right;
         }
+        .map-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .map-box {
+            width: 30%;
+            background-color: #fff;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            margin: 10px;
+        }
+        .map-name {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .map-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .map-button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- 左側チーム -->
         <div class="team-box team-left">
-            <div class="team-header">左側チーム</div>
+            <div class="team-header">マップピックチーム</div>
             <div class="team-name" th:text="${team.teamName1}"></div>  
         </div>
 
         <!-- 右側チーム -->
         <div class="team-box team-right">
-            <div class="team-header">右側チーム</div>
+            <div class="team-header">マップバンチーム</div>
             <div class="team-name" th:text="${team.teamName2}"></div>
+        </div>
+    </div>
+
+    <!-- マップ選択リスト -->
+    <div class="map-list">
+        <h2>マップ選択</h2>
+        <div th:each="map : ${maps}">
+            <div class="map-box">
+                <!-- マップ名の表示 -->
+                <div class="map-name" th:text="${map.mapsName}"></div>
+                <!-- マップ選択ボタン -->
+                <form th:action="@{/mapPick}" method="post">
+                    <input type="hidden" th:name="mapId" th:value="${map.id}" />
+                    <button class="map-button" type="submit">選択する</button>
+                </form>
+            </div>
         </div>
     </div>
 </body>
 </html>
+
