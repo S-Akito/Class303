@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -41,36 +42,54 @@
             text-align: right;
         }
         .map-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 1行に4つのアイテム */
+            gap: 20px; /* アイテム間の隙間 */
+            max-width: 900px; /* 全体の最大幅 */
+            margin: 30px auto; /* 中央に配置 */
         }
         .map-box {
-            width: 30%;
             background-color: #fff;
-            padding: 20px;
             border: 2px solid #ddd;
             border-radius: 8px;
             text-align: center;
-            margin: 10px;
+            overflow: hidden;
+            position: relative;
+            box-sizing: border-box;
+        }
+        .map-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 画像を切り取らずにフィット */
+            cursor: pointer;
+            transition: transform 0.3s ease; /* 画像にホバーエフェクト */
+            aspect-ratio: 1; /* 正方形に */
+        }
+        .map-image:hover {
+            transform: scale(1.05); /* 画像を少し大きく表示 */
         }
         .map-name {
-            font-size: 1.5em;
-            color: #333;
-            margin-bottom: 10px;
+            display: none; /* マップ名は非表示 */
         }
-        .map-button {
-            padding: 10px 20px;
-            font-size: 1em;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        h2 {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2em;
+            line-height: 1.5; /* 改行を入れるため */
         }
-        .map-button:hover {
-            background-color: #45a049;
+
+        /* レスポンシブ対応 */
+        @media (max-width: 900px) {
+            .map-list {
+                grid-template-columns: repeat(2, 1fr); /* 画面が小さくなったら2列に */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .map-list {
+                grid-template-columns: 1fr; /* さらに小さくなると1列 */
+            }
         }
     </style>
 </head>
@@ -79,31 +98,33 @@
         <!-- 左側チーム -->
         <div class="team-box team-left">
             <div class="team-header">マップピックチーム</div>
-            <div class="team-name" th:text="${team.teamName1}"></div>  
+            <div class="team-name" th:text="${session.team.teamName1}"></div>
         </div>
 
         <!-- 右側チーム -->
         <div class="team-box team-right">
             <div class="team-header">マップバンチーム</div>
-            <div class="team-name" th:text="${team.teamName2}"></div>
+            <div class="team-name" th:text="${session.team.teamName2}"></div>
         </div>
     </div>
 
     <!-- マップ選択リスト -->
-    <div class="map-list">
+    <div>
         <h2>マップ選択</h2>
-        <div th:each="map : ${maps}">
-            <div class="map-box">
-                <!-- マップ名の表示 -->
-                <div class="map-name" th:text="${map.mapsName}"></div>
-                <!-- マップ選択ボタン -->
-                <form th:action="@{/mapPick}" method="post">
-                    <input type="hidden" th:name="mapId" th:value="${map.id}" />
-                    <button class="map-button" type="submit">選択する</button>
-                </form>
+        <div class="map-list">
+            <!-- マップリストを表示 -->
+            <div th:each="map : ${session['maps']}">
+                <div class="map-box">
+                    <!-- マップ画像をボタンとして使用 -->
+                    <form th:action="@{/mapPick}" method="post">
+                        <input type="hidden" th:name="mapId" th:value="${map.id}" />
+                        <button type="submit" style="border: none; padding: 0; background: transparent;">
+                            <img class="map-image" th:src="@{'/' + ${map.maps_name} + '.PNG'}" alt="マップアイコン" />
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </body>
 </html>
-

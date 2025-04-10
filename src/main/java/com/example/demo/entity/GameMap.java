@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class GameMap {
 	private int id;
-	private String mapName;
+	private String maps_name;
 }

@@ -3,12 +3,12 @@
 <mapper namespace="com.example.mapper.MapsMapper">
 	<!-- マップを全件取得 -->
 <select id="getAllMaps" resultType="com.example.demo.entity.GameMap">
-	SELECT id, maps_name AS mapName FROM maps ORDER BY id
+	SELECT id, maps_name FROM maps ORDER BY id
 </select>
 
 	<!-- idでマップを一件取得 -->
 <select id ="getMapByName" resultType="com.example.demo.entity.GameMap">
-	SELECT id, maps_name AS mapName FROM maps WHERE id = #{id}
+	SELECT id, maps_name FROM maps WHERE id = #{id}
 </select>
 
 </mapper>
