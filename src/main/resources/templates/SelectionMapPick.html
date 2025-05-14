@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大会ホーム</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(0, 0, 64);
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 3em;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .fade-message {
+            font-size: 3em;  /* 文字サイズ */
+            font-weight: bold;
+            color: rgb(255, 255, 0);
+            opacity: 0;
+            transition: opacity 3s ease-out; /* 3秒でフェードイン */
+            visibility: visible; /* 初期状態で見える */
+        }
+        .second-message {
+            font-size: 2em;  /* 文字サイズ（マップピック） */
+            font-weight: bold;
+            color: rgb(255, 255, 0);
+            opacity: 0;
+            transition: opacity 3s ease-out; /* 3秒でフェードイン */
+            visibility: visible; /* 初期状態で見える */
+            margin-top: 20px;
+        }
+        .next-button {
+            margin-top: 20px;
+            font-size: 1.5em;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0;  /* 初期状態ではボタンを非表示 */
+            transition: opacity 2s ease-out;
+        }
+        .next-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>大会ホーム</h1>
+
+        <!-- 先行ピック権のメッセージ -->
+        <div id="firstPickMessage" class="fade-message">
+            先行マップピック権は、<br><span th:text="${session.team.teamName1}"></span> チームです
+        </div>
+
+        <!-- MAPピックへの遷移メッセージ -->
+        <div id="mapPickMessage" class="second-message">
+            MAPピックへ移ります。
+        </div>
+
+        <!--ボタンを押したときの処理-->
+        <button id="nextButton" class="next-button" 
+            onclick="window.location.href='/mapPick'">
+            マップピックへ進む
+        </button>
+
+        <script>
+            // ページロード後、先行ピックメッセージをフェードイン
+            window.onload = function() {
+                document.getElementById('firstPickMessage').style.opacity = 1; // フェードイン
+            };
+
+            // 先行マップピック権メッセージ表示後、3秒後にMAPピックメッセージをフェードイン
+            setTimeout(function() {
+                document.getElementById('mapPickMessage').style.opacity = 1; // MAPピックメッセージをフェードイン
+            }, 3000); // 3秒後にMAPピックメッセージを表示
+
+            // MAPピックメッセージが表示されたら、ボタンをフェードインさせる
+            setTimeout(function() {
+                document.getElementById('nextButton').style.opacity = 1; // ボタンをフェードイン
+            }, 6000); // 6秒後にボタンを表示
+        </script>
+    </div>
+</body>
+</html>
