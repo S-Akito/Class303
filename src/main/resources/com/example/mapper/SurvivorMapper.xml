@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.mapper.SurvivorMapper">
+<mapper namespace="com.example.mapper.SurvivorMapper">
 	<!-- [SELECT]すべてのサバイバー名を取得するためのSQLを定義 -->
 <select id="getAllSurvivors" resultType="com.example.demo.entity.survivor">
-	SELECT survivor_name from survivors ORDER BY id
+	SELECT survivor_name AS survivorName from survivors ORDER BY id
 </select>
 
 	<!--  [SELECT]特定のサバイバーをidで選択 -->
 <select id="getSurvivorByName" resultType="com.example.demo.entity.survivor">
-	SELECT survivor_name from survivors WHERE id = #{id}
+	SELECT survivor_name AS survivorName from survivors WHERE id = #{id}
 </select>
 
 </mapper>
