@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+.team-box {
+    width: 30%;
+    background-color: #fff;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+.team-header {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+.team-name {
+    font-size: 2em;
+    color: #333;
+}
+.team-left {
+    text-align: left;
+}
+.team-right {
+    text-align: right;
+}
+
+/* 背景色変更 */
+.highlight {
+    background-color: #FFEB3B; /* ハイライト色 */
+}
+
+.round-text {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 縦方向に中央揃え */
+    font-size: 2.2em;
+    font-weight: bold;
+    margin: 10px 0 30px 0;
+    color: #333;
+    height: 0px; /* 高さを指定 */
+    line-height: 100px; /* 中央揃えするために行の高さを指定 */
+}
+
+.map-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 1行に4つのアイテム */
+    gap: 20px; /* アイテム間の隙間 */
+    max-width: 900px; /* 全体の最大幅 */
+    margin: 30px auto; /* 中央に配置 */
+}
+.map-box {
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+}
+.map-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 画像を切り取らずにフィット */
+    cursor: pointer;
+    transition: transform 0.3s ease; /* 画像にホバーエフェクト */
+    aspect-ratio: 1; /* 正方形に */
+}
+.map-image:hover {
+    transform: scale(1.05); /* 画像を少し大きく表示 */
+}
+.map-name {
+    display: none; /* マップ名は非表示 */
+}
+h2 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+    line-height: 1.5; /* 改行を入れるため */
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 900px) {
+    .map-list {
+        grid-template-columns: repeat(2, 1fr); /* 画面が小さくなったら2列に */
+    }
+}
+
+@media (max-width: 600px) {
+    .map-list {
+        grid-template-columns: 1fr; /* さらに小さくなると1列 */
+    }
+}
+
+/* BANマップ用スタイル */
+.ban-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.disabled-map {
+    filter: grayscale(100%);
+    cursor: not-allowed;
+}
+
+/* メッセージスタイル */
+.message {
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #555;
+} 

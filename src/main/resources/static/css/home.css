@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(0, 0, 0);
+    color: #333;
+}
+
+/* 背景画像を設定 */
+.background {
+    position: fixed;  
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* ビューポート全体の高さ */
+    background-image: url('/path/to/your/image.jpg');
+    background-size: contain;  /* アスペクト比を保ちながら画面に収める */
+    background-position: center;  /* 画像を中央に配置 */
+    background-repeat: no-repeat; /* 画像が繰り返されないように */
+    filter: blur(8px); /* 画像にぼかしを追加 */
+    z-index: -1; /* 背景に配置 */
+}
+
+/* コンテナを中央に配置 */
+.container {
+    position: relative; /* コンテンツを画像の上に配置するため */
+    text-align: center;
+    padding: 50px;
+    z-index: 1; /* 文字を画像より前に表示するため */
+}
+
+h1 {
+    font-size: 3em;
+    color: rgb(0, 0, 0); 
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.5em;
+    color: rgb(255, 255, 0); /* 文字色を白に */
+    margin-bottom: 20px;
+}
+
+.note {
+    background-color: rgba(0, 0, 0.5); /* 半透明の黒色 */
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+.start-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.2em;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 30px;
+    transition: background-color 0.3s;
+}
+
+.start-button:hover {
+    background-color: #45a049;
+}
+
+.logo {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 150px; /* 画像のサイズ調整 */
+} 
