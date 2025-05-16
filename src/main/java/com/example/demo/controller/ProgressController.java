@@ -60,13 +60,16 @@ public class ProgressController {
 
 			// mapIdを使ってエンティティから選ばれたマップをDBから取得
 			GameMap selectedMap = mapsMapper.getMapByName(mapId); // mapIdでマップを取得
-
+			
+			
 			if (selectedMap != null) {
 				// 選択マップをbanMapに追加
 				banMap.add(selectedMap);
 				// 更新されたbanMapをセッションに保存
 				session.setAttribute("banMap", banMap);
 			}
+			
+			session.setAttribute("selectedMap", selectedMap);
 
 			System.out.println("\n選んだマップ" + selectedMap);
 			System.out.println("現在のBANマップ" + banMap);
